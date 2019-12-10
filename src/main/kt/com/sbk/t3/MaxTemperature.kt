@@ -1,7 +1,5 @@
 package com.sbk.t3
 
-import com.sbk.t2.MaxTemperatureMapper
-import com.sbk.t2.MaxTemperatureReducer
 import org.apache.hadoop.fs.Path
 import org.apache.hadoop.io.IntWritable
 import org.apache.hadoop.io.Text

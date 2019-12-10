@@ -12,6 +12,7 @@ class HdfsTraining {
                     2 -> FileSystemCat(Constants.QUANGLE_FILE_URI).copyBytes()
                     3 -> FileSystemDoubleCat(Constants.QUANGLE_FILE_URI).copyBytes()
                     4 -> ListStatus().show()
+                    5 -> FileCopyWithProgress().copyTo()
                     else -> print("No such option")
                 }
                 print("\n")
