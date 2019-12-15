@@ -11,7 +11,7 @@ import org.apache.hadoop.io.SequenceFile.Writer
 import org.apache.hadoop.io.Text
 import java.net.URI
 
-class SequenceFileWriteDemo {
+class SequenceFileWriteDemo(private var filename: String) {
 
     private val DATA = arrayOf(
             "One, two, buckle my shoe",
@@ -21,10 +21,8 @@ class SequenceFileWriteDemo {
             "Nine, ten, a big fat hen"
     )
 
-    private val FILE_NAME = "numbers2.seq"
-
     fun createSequenceFile() {
-        val uri = USER_FOLDER_URI + FILE_NAME
+        val uri = USER_FOLDER_URI + filename
         val conf = Configuration()
         val fs = FileSystem.get(URI.create(DFS_URI), conf)
         val path = Path(uri)
@@ -36,7 +34,6 @@ class SequenceFileWriteDemo {
                 Writer.valueClass(Text::class.java)
         )
         writer.use { w -> writeDataToFile(w) }
-
     }
 
     private fun writeDataToFile(w: Writer) {
@@ -53,7 +50,7 @@ class SequenceFileWriteDemo {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            SequenceFileWriteDemo().createSequenceFile()
+            SequenceFileWriteDemo("numbers.seq").createSequenceFile()
         }
     }
 }
