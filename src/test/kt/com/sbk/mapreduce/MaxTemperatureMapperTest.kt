@@ -12,9 +12,8 @@ class MaxTemperatureMapperTest {
 
     @Test
     fun processesValidRecord(): Unit {
-        val value = Text("0043011990999991950051518004+68750+023550FM-12+0382" +  // Year ^^^^
-                "99999V0203201N00261220001CN9999999N9-00111+99999999999")
-        // Temperature ^^^^^
+        val record = "0043011990999991950051518004+68750+023550FM-12+038299999V0203201N00261220001CN9999999N9-00111+99999999999"
+        val value = Text(record)
         MapDriver<LongWritable, Text, Text, IntWritable>()
                 .withMapper(MaxTemperatureMapper())
                 .withInput(LongWritable(0), value)
