@@ -7,4 +7,5 @@ object Constants {
     const val DFS_URI = "hdfs://localhost/"
     const val BUFFER_SIZE = 4096
     const val BIG_TEXT_FILE = "/home/hadoop/hadoop-data/test/bigtextfile.txt"
+    const val MISSING_TEMPERATURE = 9999
 }
