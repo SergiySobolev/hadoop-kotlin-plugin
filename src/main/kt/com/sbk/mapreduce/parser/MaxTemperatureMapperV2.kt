@@ -14,7 +14,16 @@ class MaxTemperatureMapperV2 : Mapper<LongWritable?, Text?, Text?, IntWritable?>
         val record = value?.let { NcdcRecordParser(it).parse() }
         if (NcdcRecordValidator(record).isValid()) {
             logger.info("Writing to context year = [{}], airTemperature=[{}]", record!!.year, record.airTemperature)
+            if(record.airTemperature > 900) {
+                System.err.println("Temperature = {} over 90 degrees for input {}".format(record.airTemperature, value))
+                context.status = "Detected possibly corrupted record: see logs"
+                context.getCounter(Temperature.OVER_90).increment(1)
+            }
             context.write(Text(record.year), IntWritable(record.airTemperature))
         }
     }
+}
+
+enum class Temperature {
+    OVER_90
 }
